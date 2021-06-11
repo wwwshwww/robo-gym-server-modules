@@ -15,6 +15,7 @@ from robo_gym_server_modules.robot_server.client import Client
 from robo_gym_server_modules.server_manager.grpc_msgs.python3 import server_manager_pb2, server_manager_pb2_grpc
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
+GRPC_PORT = 54321
 
 def find_free_port(lower_bound=0,upper_bound=1):
     # If no lower_bound and upper_bound are passed it uses a random port
@@ -66,7 +67,7 @@ class ServerManager():
 
     def add_rl_server(self, cmd, gui ):
 
-        grpc_port = find_free_port()
+        grpc_port = GRPC_PORT
 
         session = self.new_session(name = repr(grpc_port))
         server_w = session.new_window(window_name = 'grpc_server')
